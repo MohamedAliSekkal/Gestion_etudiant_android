@@ -115,4 +115,63 @@ public class UserRepository {
     public LiveData<User> getUserById(int userId) {
         return userDao.getUserById(userId);
     }
+
+    /**
+     * Enregistre un nouvel utilisateur
+     * @return User ID si succès, -1 si username existe, -2 si email existe, -3 si erreur
+     */
+    public long registerUser(User user) {
+        try {
+            // Vérifier si le username existe déjà
+            if (userDao.usernameExists(user.getUsername())) {
+                Log.w(TAG, "Username already exists: " + user.getUsername());
+                return -1;
+            }
+
+            // Vérifier si l'email existe déjà
+            if (userDao.emailExists(user.getEmail())) {
+                Log.w(TAG, "Email already exists: " + user.getEmail());
+                return -2;
+            }
+
+            // Hasher le mot de passe avec BCrypt
+            String hashedPassword = BCrypt.hashpw(user.getPasswordHash(), BCrypt.gensalt());
+            user.setPasswordHash(hashedPassword);
+
+            // Définir les valeurs par défaut si non définies
+            if (user.getRoleId() == 0) {
+                user.setRoleId(5); // Role par défaut: Étudiant (role_id = 5)
+            }
+            user.setActive(true);
+            user.setLocked(false);
+            user.setFailedLoginAttempts(0);
+
+            long currentTime = System.currentTimeMillis() / 1000;
+            user.setCreatedAt(currentTime);
+            user.setUpdatedAt(currentTime);
+
+            // Insérer l'utilisateur
+            long userId = userDao.insertUser(user);
+            Log.i(TAG, "User registered successfully: " + user.getUsername() + " (ID: " + userId + ")");
+            return userId;
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error during user registration", e);
+            return -3;
+        }
+    }
+
+    /**
+     * Vérifie si un nom d'utilisateur existe
+     */
+    public boolean isUsernameAvailable(String username) {
+        return !userDao.usernameExists(username);
+    }
+
+    /**
+     * Vérifie si un email existe
+     */
+    public boolean isEmailAvailable(String email) {
+        return !userDao.emailExists(email);
+    }
 }

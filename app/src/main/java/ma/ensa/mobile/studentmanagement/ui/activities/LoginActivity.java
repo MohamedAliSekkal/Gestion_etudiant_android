@@ -46,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
 
         // Listener bouton connexion
         binding.buttonLogin.setOnClickListener(v -> attemptLogin());
+
+        // Listener lien inscription
+        binding.textViewRegister.setOnClickListener(v -> navigateToRegister());
     }
 
     /**
@@ -134,6 +137,14 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish(); // Empêche le retour à la page de login
+    }
+
+    /**
+     * Navigation vers l'écran d'inscription
+     */
+    private void navigateToRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     /**

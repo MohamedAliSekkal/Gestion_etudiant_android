@@ -23,6 +23,8 @@ public class AuthViewModel extends AndroidViewModel {
     private MutableLiveData<User> authenticatedUser;
     private MutableLiveData<String> authenticationError;
     private MutableLiveData<Boolean> isLoading;
+    private MutableLiveData<Long> registrationResult;
+    private MutableLiveData<String> registrationError;
 
     private ExecutorService executorService;
 
@@ -32,6 +34,8 @@ public class AuthViewModel extends AndroidViewModel {
         authenticatedUser = new MutableLiveData<>();
         authenticationError = new MutableLiveData<>();
         isLoading = new MutableLiveData<>(false);
+        registrationResult = new MutableLiveData<>();
+        registrationError = new MutableLiveData<>();
         executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -64,6 +68,50 @@ public class AuthViewModel extends AndroidViewModel {
         });
     }
 
+    /**
+     * Enregistre un nouvel utilisateur
+     */
+    public void register(String username, String email, String password, String fullName, String phone) {
+        isLoading.setValue(true);
+
+        executorService.execute(() -> {
+            try {
+                // Créer l'objet User
+                User user = new User();
+                user.setUsername(username);
+                user.setEmail(email);
+                user.setPasswordHash(password); // Sera hashé dans le Repository
+                user.setFullName(fullName);
+                user.setPhone(phone);
+                user.setRoleId(5); // Role Étudiant par défaut
+
+                // Enregistrer l'utilisateur
+                long result = userRepository.registerUser(user);
+
+                // Mettre à jour sur le Main Thread
+                registrationResult.postValue(result);
+
+                if (result == -1) {
+                    registrationError.postValue("Ce nom d'utilisateur existe déjà");
+                } else if (result == -2) {
+                    registrationError.postValue("Cet email est déjà utilisé");
+                } else if (result == -3) {
+                    registrationError.postValue("Erreur lors de l'inscription");
+                } else if (result > 0) {
+                    registrationError.postValue(null);
+                    Log.i(TAG, "User registered successfully with ID: " + result);
+                }
+
+            } catch (Exception e) {
+                Log.e(TAG, "Registration error", e);
+                registrationError.postValue("Erreur lors de l'inscription");
+                registrationResult.postValue(-3L);
+            } finally {
+                isLoading.postValue(false);
+            }
+        });
+    }
+
     // Getters pour LiveData observables
     public LiveData<User> getAuthenticatedUser() {
         return authenticatedUser;
@@ -75,6 +123,14 @@ public class AuthViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getIsLoading() {
         return isLoading;
+    }
+
+    public LiveData<Long> getRegistrationResult() {
+        return registrationResult;
+    }
+
+    public LiveData<String> getRegistrationError() {
+        return registrationError;
     }
 
     @Override

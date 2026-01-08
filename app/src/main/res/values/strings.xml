@@ -10,6 +10,19 @@
     <string name="login_error_empty">Veuillez remplir tous les champs</string>
     <string name="login_error_failed">Authentification échouée</string>
     <string name="login_loading">Connexion en cours...</string>
+    <string name="no_account">Pas de compte ?</string>
+    <string name="register_link">S\'inscrire</string>
+
+    <!-- Register -->
+    <string name="register_title">Inscription</string>
+    <string name="register_subtitle">Créer un nouveau compte</string>
+    <string name="full_name_hint">Nom complet</string>
+    <string name="email_hint">Email</string>
+    <string name="phone_hint">Téléphone</string>
+    <string name="confirm_password_hint">Confirmer le mot de passe</string>
+    <string name="register_button">S\'inscrire</string>
+    <string name="already_have_account">Vous avez déjà un compte ?</string>
+    <string name="login_link">Se connecter</string>
 
     <!-- Home -->
     <string name="home_welcome">Bienvenue</string>
