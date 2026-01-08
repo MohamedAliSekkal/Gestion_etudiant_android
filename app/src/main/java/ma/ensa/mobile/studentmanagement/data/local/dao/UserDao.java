@@ -40,4 +40,10 @@ public interface UserDao {
 
     @Query("SELECT COUNT(*) FROM users")
     int getUserCount();
+
+    @Query("SELECT COUNT(*) > 0 FROM users WHERE username = :username")
+    boolean usernameExists(String username);
+
+    @Query("SELECT COUNT(*) > 0 FROM users WHERE email = :email")
+    boolean emailExists(String email);
 }
