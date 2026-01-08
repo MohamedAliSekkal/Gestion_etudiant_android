@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Student Management</string>
+    <string name="app_name">ESMS - Gestion Étudiants</string>
+
+    <!-- Login -->
+    <string name="login_title">Connexion</string>
+    <string name="login_subtitle">Système de Gestion des Étudiants</string>
+    <string name="username_hint">Nom d\'utilisateur</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="login_button">Se connecter</string>
+    <string name="login_error_empty">Veuillez remplir tous les champs</string>
+    <string name="login_error_failed">Authentification échouée</string>
+    <string name="login_loading">Connexion en cours...</string>
+
+    <!-- Home -->
+    <string name="home_welcome">Bienvenue</string>
+    <string name="home_menu_students">Gestion des Étudiants</string>
+    <string name="home_menu_logout">Déconnexion</string>
+
+    <!-- General -->
+    <string name="error_general">Une erreur est survenue</string>
+    <string name="loading">Chargement...</string>
 </resources>
