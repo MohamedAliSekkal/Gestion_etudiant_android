@@ -121,8 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         preferencesManager.saveUserSession(
                 user.getUserId(),
                 user.getUsername(),
-                String.valueOf(user.getRoleId())
-        );
+                String.valueOf(user.getRoleId()));
 
         Toast.makeText(this, "Bienvenue " + user.getFullName(), Toast.LENGTH_SHORT).show();
 
@@ -131,12 +130,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Navigation vers l'écran d'accueil
+     * Navigation vers l'écran d'accueil en fonction du rôle
      */
     private void navigateToHome() {
+        // For now, everyone goes to the simple HomeActivity
+        // AdminHomeActivity and StudentHomeActivity are disabled due to navigation issues
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        finish(); // Empêche le retour à la page de login
+        finish(); // Prevent going back to login
     }
 
     /**
