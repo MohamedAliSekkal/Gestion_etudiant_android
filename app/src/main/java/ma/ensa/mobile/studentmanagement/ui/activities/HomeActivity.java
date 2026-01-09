@@ -84,8 +84,9 @@ public class HomeActivity extends AppCompatActivity {
     private void setupClickListeners() {
         // Card Gestion des Étudiants
         binding.cardStudentManagement.setOnClickListener(v -> {
-            // TODO: Naviguer vers StudentListActivity
-            Toast.makeText(this, "Module Gestion Étudiants - À implémenter", Toast.LENGTH_SHORT).show();
+            // Navigate to MainActivity (Student Management)
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
 
         // Card Déconnexion

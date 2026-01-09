@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/studentListFragment">
+
+    <!-- Student List Fragment -->
+    <fragment
+        android:id="@+id/studentListFragment"
+        android:name="ma.ensa.mobile.studentmanagement.ui.fragments.student.StudentListFragment"
+        android:label="Liste des Étudiants"
+        tools:layout="@layout/fragment_student_list">
+
+        <action
+            android:id="@+id/action_studentListFragment_to_studentDetailFragment"
+            app:destination="@id/studentDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_studentListFragment_to_studentCreateFragment"
+            app:destination="@id/studentCreateFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <!-- Student Detail Fragment -->
+    <fragment
+        android:id="@+id/studentDetailFragment"
+        android:name="ma.ensa.mobile.studentmanagement.ui.fragments.student.StudentDetailFragment"
+        android:label="Détails de l'Étudiant"
+        tools:layout="@layout/fragment_student_detail">
+
+        <argument
+            android:name="studentId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+
+        <action
+            android:id="@+id/action_studentDetailFragment_to_studentEditFragment"
+            app:destination="@id/studentEditFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <!-- Student Create Fragment -->
+    <fragment
+        android:id="@+id/studentCreateFragment"
+        android:name="ma.ensa.mobile.studentmanagement.ui.fragments.student.StudentCreateFragment"
+        android:label="Ajouter un Étudiant"
+        tools:layout="@layout/fragment_student_create" />
+
+    <!-- Student Edit Fragment (reuses StudentCreateFragment) -->
+    <fragment
+        android:id="@+id/studentEditFragment"
+        android:name="ma.ensa.mobile.studentmanagement.ui.fragments.student.StudentCreateFragment"
+        android:label="Modifier l'Étudiant"
+        tools:layout="@layout/fragment_student_create">
+
+        <argument
+            android:name="studentId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Avatar Circle -->
+        <TextView
+            android:id="@+id/textViewAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="AB" />
+
+        <!-- Student Name -->
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewAvatar"
+            app:layout_constraintTop_toTopOf="@id/textViewAvatar"
+            tools:text="Jean Dupont" />
+
+        <!-- Apogee Number -->
+        <TextView
+            android:id="@+id/textViewApogee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            app:drawableStartCompat="@android:drawable/ic_menu_sort_by_size"
+            app:drawableTint="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="@id/textViewName"
+            app:layout_constraintStart_toStartOf="@id/textViewName"
+            app:layout_constraintTop_toBottomOf="@id/textViewName"
+            tools:text="Apogée: 12345678" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:drawableStartCompat="@android:drawable/ic_dialog_email"
+            app:drawableTint="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="@id/textViewApogee"
+            app:layout_constraintStart_toStartOf="@id/textViewApogee"
+            app:layout_constraintTop_toBottomOf="@id/textViewApogee"
+            tools:text="jean.dupont@ensa.ac.ma" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

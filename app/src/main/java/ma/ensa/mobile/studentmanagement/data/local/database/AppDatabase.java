@@ -10,13 +10,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ma.ensa.mobile.studentmanagement.data.local.dao.RoleDao;
+import ma.ensa.mobile.studentmanagement.data.local.dao.StudentDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.UserDao;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Role;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
 import ma.ensa.mobile.studentmanagement.data.local.entity.User;
 
 @Database(
-        entities = {Role.class, User.class},
-        version = 1,
+        entities = {Role.class, User.class, Student.class},
+        version = 2,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -24,6 +26,7 @@ public abstract class AppDatabase extends RoomDatabase {
     // DAOs abstraits
     public abstract RoleDao roleDao();
     public abstract UserDao userDao();
+    public abstract StudentDao studentDao();
 
     // Instance Singleton
     private static volatile AppDatabase INSTANCE;
@@ -45,6 +48,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class,
                                     "esms_database"
                             )
+                            .fallbackToDestructiveMigration() // Pour le développement
                             .addCallback(new DatabaseCallback())
                             .build();
                 }

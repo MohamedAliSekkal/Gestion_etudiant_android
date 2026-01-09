@@ -32,4 +32,25 @@
     <!-- General -->
     <string name="error_general">Une erreur est survenue</string>
     <string name="loading">Chargement...</string>
+
+    <!-- Navigation Menu -->
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    
+    <!-- Menu Items -->
+    <string name="menu_home">Accueil</string>
+    <string name="menu_dashboard">Tableau de bord</string>
+    <string name="menu_students">Étudiants</string>
+    <string name="menu_users">Utilisateurs</string>
+    <string name="menu_profile">Mon Profil</string>
+    <string name="menu_absences">Mes Absences</string>
+    <string name="menu_notes">Mes Notes</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_other">Autres</string>
+    <string name="menu_logout">Déconnexion</string>
+    
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
