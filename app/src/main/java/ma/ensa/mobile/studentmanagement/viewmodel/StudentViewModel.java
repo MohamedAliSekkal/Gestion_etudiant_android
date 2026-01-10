@@ -172,6 +172,22 @@ public class StudentViewModel extends AndroidViewModel {
     }
 
     /**
+     * Search with status filter (Active/Archived)
+     * @param query Search query (empty string for all)
+     * @param includeArchived Include archived students
+     */
+    public LiveData<List<Student>> searchWithStatusFilter(String query, boolean includeArchived) {
+        return repository.searchWithStatusFilter(query, includeArchived);
+    }
+
+    /**
+     * Get all students including archived
+     */
+    public LiveData<List<Student>> getAllStudentsIncludingArchived() {
+        return repository.getAllStudentsIncludingArchived();
+    }
+
+    /**
      * Validate student data
      */
     private boolean validateStudent(Student student) {
