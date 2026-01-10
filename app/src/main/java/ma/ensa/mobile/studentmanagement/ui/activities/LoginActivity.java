@@ -3,6 +3,7 @@ package ma.ensa.mobile.studentmanagement.ui.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import ma.ensa.mobile.studentmanagement.utils.PreferencesManager;
 import ma.ensa.mobile.studentmanagement.viewmodel.AuthViewModel;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String TAG = "LoginActivity";
 
     private ActivityLoginBinding binding;
     private AuthViewModel authViewModel;
@@ -133,11 +136,48 @@ public class LoginActivity extends AppCompatActivity {
      * Navigation vers l'écran d'accueil en fonction du rôle
      */
     private void navigateToHome() {
-        // For now, everyone goes to the simple HomeActivity
-        // AdminHomeActivity and StudentHomeActivity are disabled due to navigation issues
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish(); // Prevent going back to login
+        String roleId = preferencesManager.getRoleCode();
+        Intent intent;
+
+        try {
+            // Route users based on role
+            switch (roleId) {
+                case "1": // Admin
+                case "2": // Scolarité
+                case "3": // APOGÉE
+                    // Admin and staff go to AdminHomeActivity with full access
+                    intent = new Intent(this, AdminHomeActivity.class);
+                    break;
+
+                case "4": // Enseignant
+                    // Teachers go to AdminHomeActivity with read-only access
+                    intent = new Intent(this, AdminHomeActivity.class);
+                    break;
+
+                case "5": // Student
+                    // Students go to StudentHomeActivity (Person B features not implemented yet)
+                    Toast.makeText(this, "Interface étudiant - Fonctionnalités en développement par la Personne B", Toast.LENGTH_LONG).show();
+                    intent = new Intent(this, StudentHomeActivity.class);
+                    break;
+
+                default:
+                    // Fallback for unknown roles
+                    Log.w(TAG, "Unknown role: " + roleId + ", falling back to HomeActivity");
+                    intent = new Intent(this, HomeActivity.class);
+                    break;
+            }
+
+            startActivity(intent);
+            finish(); // Prevent going back to login
+
+        } catch (Exception e) {
+            // Safety fallback if navigation fails
+            Log.e(TAG, "Navigation error: " + e.getMessage(), e);
+            Toast.makeText(this, "Erreur de navigation: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /**

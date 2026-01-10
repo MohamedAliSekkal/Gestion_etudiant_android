@@ -132,4 +132,22 @@ public interface StudentDao {
      */
     @Query("SELECT * FROM students WHERE status = :status ORDER BY last_name ASC, first_name ASC")
     LiveData<List<Student>> getStudentsByStatus(String status);
+
+    /**
+     * Get count of active students (LiveData for dashboard)
+     */
+    @Query("SELECT COUNT(*) FROM students WHERE is_archived = 0")
+    LiveData<Integer> getActiveStudentCountLive();
+
+    /**
+     * Get count of archived students
+     */
+    @Query("SELECT COUNT(*) FROM students WHERE is_archived = 1")
+    LiveData<Integer> getArchivedStudentCountLive();
+
+    /**
+     * Get count of students by status
+     */
+    @Query("SELECT COUNT(*) FROM students WHERE status = :status AND is_archived = 0")
+    LiveData<Integer> getStudentCountByStatus(String status);
 }
