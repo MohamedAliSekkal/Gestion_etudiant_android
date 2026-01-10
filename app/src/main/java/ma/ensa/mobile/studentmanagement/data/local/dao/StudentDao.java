@@ -150,4 +150,23 @@ public interface StudentDao {
      */
     @Query("SELECT COUNT(*) FROM students WHERE status = :status AND is_archived = 0")
     LiveData<Integer> getStudentCountByStatus(String status);
+
+    /**
+     * Advanced search: Search with status filter
+     * @param query Search query (name or apogee, use "" for all)
+     * @param includeArchived Include archived students (0 = active only, 1 = all)
+     */
+    @Query("SELECT * FROM students WHERE " +
+           "(:query = '' OR first_name LIKE '%' || :query || '%' OR " +
+           "last_name LIKE '%' || :query || '%' OR " +
+           "apogee_number LIKE '%' || :query || '%') " +
+           "AND (:includeArchived = 1 OR is_archived = 0) " +
+           "ORDER BY last_name ASC, first_name ASC")
+    LiveData<List<Student>> searchWithStatusFilter(String query, int includeArchived);
+
+    /**
+     * Get all students (including archived) for filtering
+     */
+    @Query("SELECT * FROM students ORDER BY is_archived ASC, last_name ASC, first_name ASC")
+    LiveData<List<Student>> getAllStudentsIncludingArchived();
 }

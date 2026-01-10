@@ -184,4 +184,18 @@ public class StudentRepository {
     public int getTotalStudentCount() {
         return studentDao.getTotalStudentCount();
     }
+
+    /**
+     * Search with status filter (Active/Archived)
+     */
+    public LiveData<List<Student>> searchWithStatusFilter(String query, boolean includeArchived) {
+        return studentDao.searchWithStatusFilter(query, includeArchived ? 1 : 0);
+    }
+
+    /**
+     * Get all students including archived
+     */
+    public LiveData<List<Student>> getAllStudentsIncludingArchived() {
+        return studentDao.getAllStudentsIncludingArchived();
+    }
 }
