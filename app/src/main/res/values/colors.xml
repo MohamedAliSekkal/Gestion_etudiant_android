@@ -1,22 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- ============================================ -->
+    <!-- PRIMARY COLORS - ENSA Brand Identity -->
+    <!-- ============================================ -->
     <color name="primary">#1F4E78</color>
     <color name="primary_dark">#14365A</color>
     <color name="primary_light">#2E5C8A</color>
+    <color name="primary_variant">#3D6FA8</color>
+    
+    <!-- Primary Gradient Colors -->
+    <color name="primary_gradient_start">#1F4E78</color>
+    <color name="primary_gradient_end">#3D6FA8</color>
+    
+    <!-- ============================================ -->
+    <!-- ACCENT COLORS -->
+    <!-- ============================================ -->
     <color name="accent">#FF9800</color>
-    <color name="background">#F5F5F5</color>
-    <color name="surface">#FFFFFF</color>
+    <color name="accent_light">#FFB74D</color>
+    <color name="accent_dark">#F57C00</color>
+    
+    <!-- Accent Gradient Colors -->
+    <color name="accent_gradient_start">#FF9800</color>
+    <color name="accent_gradient_end">#FF6F00</color>
+    
+    <!-- ============================================ -->
+    <!-- SEMANTIC COLORS (Status & Feedback) -->
+    <!-- ============================================ -->
+    <!-- Success Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="success_light">#81C784</color>
+    <color name="success_dark">#388E3C</color>
+    <color name="success_background">#E8F5E9</color>
+    
+    <!-- Warning Colors -->
+    <color name="warning">#FF9800</color>
+    <color name="warning_light">#FFB74D</color>
+    <color name="warning_dark">#F57C00</color>
+    <color name="warning_background">#FFF3E0</color>
+    
+    <!-- Error Colors -->
     <color name="error">#D32F2F</color>
+    <color name="error_light">#E57373</color>
+    <color name="error_dark">#C62828</color>
+    <color name="error_background">#FFEBEE</color>
+    
+    <!-- Info Colors -->
+    <color name="info">#2196F3</color>
+    <color name="info_light">#64B5F6</color>
+    <color name="info_dark">#1976D2</color>
+    <color name="info_background">#E3F2FD</color>
+    
+    <!-- ============================================ -->
+    <!-- BACKGROUND COLORS -->
+    <!-- ============================================ -->
+    <color name="background">#F5F7FA</color>
+    <color name="background_light">#FAFBFC</color>
+    <color name="background_dark">#E8EBF0</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_elevated">#FFFFFF</color>
+    
+    <!-- Card Background Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_background_light">#FAFBFC</color>
+    <color name="card_gradient_start">#FFFFFF</color>
+    <color name="card_gradient_end">#F8F9FA</color>
+    
+    <!-- ============================================ -->
+    <!-- TEXT COLORS -->
+    <!-- ============================================ -->
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
-    <color name="divider">#BDBDBD</color>
-
-    <!-- App Colors -->
+    <color name="text_tertiary">#9E9E9E</color>
+    <color name="text_disabled">#BDBDBD</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_white_secondary">#E0E0E0</color>
+    
+    <!-- ============================================ -->
+    <!-- STATUS BADGE COLORS -->
+    <!-- ============================================ -->
+    <!-- Active Status -->
+    <color name="status_active">#4CAF50</color>
+    <color name="status_active_background">#E8F5E9</color>
+    
+    <!-- Archived Status -->
+    <color name="status_archived">#9E9E9E</color>
+    <color name="status_archived_background">#F5F5F5</color>
+    
+    <!-- Graduated Status -->
+    <color name="status_graduated">#2196F3</color>
+    <color name="status_graduated_background">#E3F2FD</color>
+    
+    <!-- Pending Status -->
+    <color name="status_pending">#FF9800</color>
+    <color name="status_pending_background">#FFF3E0</color>
+    
+    <!-- ============================================ -->
+    <!-- BORDER & DIVIDER COLORS -->
+    <!-- ============================================ -->
+    <color name="divider">#E0E0E0</color>
+    <color name="divider_light">#F0F0F0</color>
+    <color name="border">#E0E0E0</color>
+    <color name="border_focused">#1F4E78</color>
+    
+    <!-- ============================================ -->
+    <!-- OVERLAY COLORS (with transparency) -->
+    <!-- ============================================ -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+    <color name="scrim">#52000000</color>
+    
+    <!-- Ripple Effect Colors -->
+    <color name="ripple_primary">#331F4E78</color>
+    <color name="ripple_accent">#33FF9800</color>
+    <color name="ripple_light">#1A000000</color>
+    
+    <!-- ============================================ -->
+    <!-- SHADOW COLORS -->
+    <!-- ============================================ -->
+    <color name="shadow_light">#1A000000</color>
+    <color name="shadow_medium">#33000000</color>
+    <color name="shadow_dark">#52000000</color>
+    
+    <!-- ============================================ -->
+    <!-- CHART & GRAPH COLORS -->
+    <!-- ============================================ -->
+    <color name="chart_color_1">#1F4E78</color>
+    <color name="chart_color_2">#FF9800</color>
+    <color name="chart_color_3">#4CAF50</color>
+    <color name="chart_color_4">#2196F3</color>
+    <color name="chart_color_5">#9C27B0</color>
+    <color name="chart_color_6">#F44336</color>
+    <color name="chart_color_7">#00BCD4</color>
+    
+    <!-- ============================================ -->
+    <!-- BRANCH/FILIERE COLORS (for visual distinction) -->
+    <!-- ============================================ -->
+    <color name="branch_gi">#2196F3</color>          <!-- Génie Informatique - Blue -->
+    <color name="branch_gstr">#FF9800</color>        <!-- GSTR - Orange -->
+    <color name="branch_ml">#4CAF50</color>          <!-- Management Logistique - Green -->
+    <color name="branch_gm">#9C27B0</color>          <!-- Génie Mécatronique - Purple -->
+    <color name="branch_gc">#795548</color>          <!-- Génie Civil - Brown -->
+    <color name="branch_gcse">#F44336</color>        <!-- Cybersécurité - Red -->
+    <color name="branch_bdai">#00BCD4</color>        <!-- Big Data & IA - Cyan -->
+    
+    <!-- ============================================ -->
+    <!-- LEVEL COLORS (for visual distinction) -->
+    <!-- ============================================ -->
+    <color name="level_cp1">#81C784</color>          <!-- CP1 - Light Green -->
+    <color name="level_cp2">#4CAF50</color>          <!-- CP2 - Green -->
+    <color name="level_ci1">#64B5F6</color>          <!-- CI1 - Light Blue -->
+    <color name="level_ci2">#2196F3</color>          <!-- CI2 - Blue -->
+    <color name="level_ci3">#1976D2</color>          <!-- CI3 - Dark Blue -->
+    
+    <!-- ============================================ -->
+    <!-- APP COLORS (Legacy Support) -->
+    <!-- ============================================ -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorPrimaryDark">@color/primary_dark</color>
     <color name="colorAccent">@color/accent</color>
-
-    <!-- Legacy -->
+    
+    <!-- ============================================ -->
+    <!-- BASIC COLORS (Legacy) -->
+    <!-- ============================================ -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    
+    <!-- ============================================ -->
+    <!-- BUTTON COLORS -->
+    <!-- ============================================ -->
+    <color name="button_primary">#1F4E78</color>
+    <color name="button_primary_pressed">#14365A</color>
+    <color name="button_secondary">#E0E0E0</color>
+    <color name="button_secondary_pressed">#BDBDBD</color>
+    <color name="button_disabled">#E0E0E0</color>
+    <color name="button_text_disabled">#9E9E9E</color>
+    
+    <!-- ============================================ -->
+    <!-- INPUT FIELD COLORS -->
+    <!-- ============================================ -->
+    <color name="input_background">#FAFAFA</color>
+    <color name="input_border">#E0E0E0</color>
+    <color name="input_border_focused">#1F4E78</color>
+    <color name="input_border_error">#D32F2F</color>
+    <color name="input_text">#212121</color>
+    <color name="input_hint">#9E9E9E</color>
 </resources>
