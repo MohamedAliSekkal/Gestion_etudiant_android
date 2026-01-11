@@ -22,8 +22,8 @@
         <item name="colorOnSurface">@color/text_primary</item>
         
         <!-- Error color -->
-        <item name="colorError">@color/error</item>
-        <item name="colorOnError">@color/white</item>
+        <!-- <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/white</item> -->
     </style>
 
     <style name="Theme.StudentManagement" parent="Base.Theme.StudentManagement" />
