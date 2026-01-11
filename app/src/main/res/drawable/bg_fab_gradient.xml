@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Floating Action Button Gradient Background -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    
+    <gradient
+        android:angle="135"
+        android:startColor="@color/accent"
+        android:endColor="@color/accent_dark"
+        android:type="linear" />
+    
+    <size
+        android:width="56dp"
+        android:height="56dp" />
+    
+</shape>
+

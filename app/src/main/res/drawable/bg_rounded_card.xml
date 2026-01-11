@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded Card Background with Shadow -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Shadow Layer -->
+    <item
+        android:top="2dp"
+        android:right="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/shadow_light" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    
+    <!-- Card Layer -->
+    <item
+        android:bottom="2dp"
+        android:left="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/card_background" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    
+</layer-list>
+
