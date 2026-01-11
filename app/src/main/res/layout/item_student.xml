@@ -5,61 +5,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/surface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Avatar Circle -->
-        <TextView
-            android:id="@+id/textViewAvatar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@color/primary"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
+        <!-- Avatar Circle with Gradient Background -->
+        <FrameLayout
+            android:id="@+id/frameAvatar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_avatar_circle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="AB" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:elevation="2dp"
+                tools:text="AB" />
+
+        </FrameLayout>
 
         <!-- Student Name -->
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:textColor="@color/text_primary"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textViewAvatar"
-            app:layout_constraintTop_toTopOf="@id/textViewAvatar"
+            app:layout_constraintEnd_toStartOf="@id/textViewStatus"
+            app:layout_constraintStart_toEndOf="@id/frameAvatar"
+            app:layout_constraintTop_toTopOf="@id/frameAvatar"
             tools:text="Jean Dupont" />
+
+        <!-- Status Badge -->
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_badge_active"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="ACTIF"
+            android:textColor="@color/status_active"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/frameAvatar"
+            tools:text="ACTIF" />
 
         <!-- Apogee Number -->
         <TextView
             android:id="@+id/textViewApogee"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:drawablePadding="4dp"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            app:drawableStartCompat="@android:drawable/ic_menu_sort_by_size"
-            app:drawableTint="@color/text_secondary"
-            app:layout_constraintEnd_toEndOf="@id/textViewName"
+            android:layout_marginTop="6dp"
+            android:drawablePadding="6dp"
+            android:textColor="@color/primary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_badge"
+            app:drawableTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textViewName"
             app:layout_constraintTop_toBottomOf="@id/textViewName"
             tools:text="Apogée: 12345678" />
@@ -69,15 +100,15 @@
             android:id="@+id/textViewEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:drawablePadding="4dp"
+            android:layout_marginTop="6dp"
+            android:drawablePadding="6dp"
             android:textColor="@color/text_secondary"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:maxLines="1"
             android:ellipsize="end"
-            app:drawableStartCompat="@android:drawable/ic_dialog_email"
+            app:drawableStartCompat="@drawable/ic_email"
             app:drawableTint="@color/text_secondary"
-            app:layout_constraintEnd_toEndOf="@id/textViewApogee"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/textViewApogee"
             app:layout_constraintTop_toBottomOf="@id/textViewApogee"
             tools:text="jean.dupont@ensa.ac.ma" />
