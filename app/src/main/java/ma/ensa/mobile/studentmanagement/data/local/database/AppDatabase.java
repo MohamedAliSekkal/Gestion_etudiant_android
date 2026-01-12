@@ -13,20 +13,26 @@ import ma.ensa.mobile.studentmanagement.data.local.dao.AbsenceDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.BranchDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.GradeDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.LevelDao;
+import ma.ensa.mobile.studentmanagement.data.local.dao.ModuleDao;
+import ma.ensa.mobile.studentmanagement.data.local.dao.ProfessorDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.RoleDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.StudentDao;
+import ma.ensa.mobile.studentmanagement.data.local.dao.StudentModuleDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.UserDao;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Absence;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Branch;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Grade;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Level;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Module;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Professor;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Role;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
+import ma.ensa.mobile.studentmanagement.data.local.entity.StudentModule;
 import ma.ensa.mobile.studentmanagement.data.local.entity.User;
 
 @Database(
-        entities = {Role.class, User.class, Student.class, Branch.class, Level.class, Absence.class, Grade.class},
-        version = 4,
+        entities = {Role.class, User.class, Student.class, Branch.class, Level.class, Absence.class, Grade.class, Professor.class, Module.class, StudentModule.class},
+        version = 5,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -39,6 +45,9 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract LevelDao levelDao();
     public abstract AbsenceDao absenceDao();
     public abstract GradeDao gradeDao();
+    public abstract ProfessorDao professorDao();
+    public abstract ModuleDao moduleDao();
+    public abstract StudentModuleDao studentModuleDao();
 
     // Instance Singleton
     private static volatile AppDatabase INSTANCE;

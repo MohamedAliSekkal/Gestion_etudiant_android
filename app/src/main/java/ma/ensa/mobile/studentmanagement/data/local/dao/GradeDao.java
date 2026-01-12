@@ -38,20 +38,20 @@ public interface GradeDao {
     /**
      * Get grades by student and semester
      */
-    @Query("SELECT * FROM grades WHERE student_id = :studentId AND semester = :semester ORDER BY module_code ASC")
+    @Query("SELECT * FROM grades WHERE student_id = :studentId AND semester = :semester ORDER BY module_id ASC")
     LiveData<List<Grade>> getGradesByStudentAndSemester(int studentId, String semester);
 
     /**
      * Get grades by student and academic year
      */
-    @Query("SELECT * FROM grades WHERE student_id = :studentId AND academic_year = :academicYear ORDER BY semester ASC, module_code ASC")
+    @Query("SELECT * FROM grades WHERE student_id = :studentId AND academic_year = :academicYear ORDER BY semester ASC, module_id ASC")
     LiveData<List<Grade>> getGradesByStudentAndYear(int studentId, String academicYear);
 
     /**
      * Get grades by module
      */
-    @Query("SELECT * FROM grades WHERE student_id = :studentId AND module_code = :moduleCode ORDER BY exam_date DESC")
-    LiveData<List<Grade>> getGradesByModule(int studentId, String moduleCode);
+    @Query("SELECT * FROM grades WHERE student_id = :studentId AND module_id = :moduleId ORDER BY exam_date DESC")
+    LiveData<List<Grade>> getGradesByModule(int studentId, int moduleId);
 
     /**
      * Get average grade for a student
@@ -95,6 +95,18 @@ public interface GradeDao {
      * Check if module is passed
      */
     @Query("SELECT COUNT(*) > 0 FROM grades " +
-           "WHERE student_id = :studentId AND module_code = :moduleCode AND status = 'PASSED'")
-    boolean isModulePassed(int studentId, String moduleCode);
+           "WHERE student_id = :studentId AND module_id = :moduleId AND status = 'PASSED'")
+    boolean isModulePassed(int studentId, int moduleId);
+
+    /**
+     * Get grades by module (for professors)
+     */
+    @Query("SELECT * FROM grades WHERE module_id = :moduleId ORDER BY student_id, exam_date DESC")
+    LiveData<List<Grade>> getGradesByModuleOnly(int moduleId);
+
+    /**
+     * Get all grades for a specific student in a specific module
+     */
+    @Query("SELECT * FROM grades WHERE student_id = :studentId AND module_id = :moduleId ORDER BY exam_date DESC")
+    LiveData<List<Grade>> getStudentGradesInModule(int studentId, int moduleId);
 }
