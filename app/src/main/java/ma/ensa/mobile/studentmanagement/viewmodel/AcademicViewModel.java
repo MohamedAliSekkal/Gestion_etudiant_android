@@ -48,8 +48,8 @@ public class AcademicViewModel extends AndroidViewModel {
     /**
      * Get grades by module
      */
-    public LiveData<List<Grade>> getGradesByModule(int studentId, String moduleCode) {
-        return gradeRepository.getGradesByModule(studentId, moduleCode);
+    public LiveData<List<Grade>> getGradesByModule(int studentId, int moduleId) {
+        return gradeRepository.getGradesByModule(studentId, moduleId);
     }
 
     /**
