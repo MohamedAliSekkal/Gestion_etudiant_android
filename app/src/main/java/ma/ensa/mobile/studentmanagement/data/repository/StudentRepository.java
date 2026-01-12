@@ -151,6 +151,13 @@ public class StudentRepository {
     }
 
     /**
+     * Get a student by username (for profile viewing - B3)
+     */
+    public LiveData<Student> getStudentByUsername(String username) {
+        return studentDao.getStudentByUsername(username);
+    }
+
+    /**
      * Search by Apogee number (BF4)
      */
     public LiveData<Student> searchByApogee(String apogeeNumber) {
