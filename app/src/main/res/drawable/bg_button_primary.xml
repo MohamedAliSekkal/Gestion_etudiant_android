@@ -7,8 +7,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:startColor="@color/button_primary_pressed"
-                android:endColor="@color/primary_dark"
+                android:startColor="@color/info"
+                android:endColor="@color/info_dark"
                 android:type="linear" />
             <corners android:radius="8dp" />
         </shape>
@@ -27,8 +27,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:startColor="@color/primary"
-                android:endColor="@color/primary_dark"
+                android:startColor="@color/info_light"
+                android:endColor="@color/info"
                 android:type="linear" />
             <corners android:radius="8dp" />
         </shape>

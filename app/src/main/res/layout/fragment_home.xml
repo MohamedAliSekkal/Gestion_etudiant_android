@@ -176,9 +176,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/gradient_sky_blue_light"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="16dp"
-                app:cardBackground="@drawable/gradient_sky_blue_light">
+                app:cardBackgroundColor="@android:color/transparent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
