@@ -47,8 +47,8 @@ public class GradeRepository {
     /**
      * Get grades by module
      */
-    public LiveData<List<Grade>> getGradesByModule(int studentId, String moduleCode) {
-        return gradeDao.getGradesByModule(studentId, moduleCode);
+    public LiveData<List<Grade>> getGradesByModule(int studentId, int moduleId) {
+        return gradeDao.getGradesByModule(studentId, moduleId);
     }
 
     /**
@@ -91,5 +91,33 @@ public class GradeRepository {
      */
     public LiveData<List<Grade>> getFailedGrades(int studentId) {
         return gradeDao.getFailedGrades(studentId);
+    }
+
+    /**
+     * Insert a new grade
+     */
+    public void insertGrade(Grade grade) {
+        AppDatabase.databaseWriteExecutor.execute(() -> gradeDao.insertGrade(grade));
+    }
+
+    /**
+     * Update a grade
+     */
+    public void updateGrade(Grade grade) {
+        AppDatabase.databaseWriteExecutor.execute(() -> gradeDao.updateGrade(grade));
+    }
+
+    /**
+     * Get grades by module (for professors)
+     */
+    public LiveData<List<Grade>> getGradesByModuleOnly(int moduleId) {
+        return gradeDao.getGradesByModuleOnly(moduleId);
+    }
+
+    /**
+     * Get all grades for a specific student in a specific module
+     */
+    public LiveData<List<Grade>> getStudentGradesInModule(int studentId, int moduleId) {
+        return gradeDao.getStudentGradesInModule(studentId, moduleId);
     }
 }

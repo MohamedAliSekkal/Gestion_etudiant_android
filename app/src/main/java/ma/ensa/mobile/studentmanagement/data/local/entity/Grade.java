@@ -18,10 +18,17 @@ import androidx.room.PrimaryKey;
             parentColumns = "student_id",
             childColumns = "student_id",
             onDelete = ForeignKey.CASCADE
+        ),
+        @ForeignKey(
+            entity = Module.class,
+            parentColumns = "module_id",
+            childColumns = "module_id",
+            onDelete = ForeignKey.CASCADE
         )
     },
     indices = {
         @Index(value = "student_id"),
+        @Index(value = "module_id"),
         @Index(value = "semester"),
         @Index(value = "academic_year")
     }
@@ -35,11 +42,8 @@ public class Grade {
     @ColumnInfo(name = "student_id")
     private int studentId;
 
-    @ColumnInfo(name = "module_code")
-    private String moduleCode; // e.g., "INF101"
-
-    @ColumnInfo(name = "module_name")
-    private String moduleName; // e.g., "Programmation Java"
+    @ColumnInfo(name = "module_id")
+    private int moduleId; // Foreign key to modules table
 
     @ColumnInfo(name = "exam_type")
     private String examType; // "DS" (Devoir Surveillé), "EXAM" (Examen Final), "TP", "PROJECT"
@@ -95,20 +99,12 @@ public class Grade {
         this.studentId = studentId;
     }
 
-    public String getModuleCode() {
-        return moduleCode;
+    public int getModuleId() {
+        return moduleId;
     }
 
-    public void setModuleCode(String moduleCode) {
-        this.moduleCode = moduleCode;
-    }
-
-    public String getModuleName() {
-        return moduleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
+    public void setModuleId(int moduleId) {
+        this.moduleId = moduleId;
     }
 
     public String getExamType() {

@@ -38,6 +38,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Professor Home Activity -->
+        <activity
+            android:name=".ui.activities.ProfessorHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- Login Activity (Point d'entrée) -->
         <activity
             android:name=".ui.activities.LoginActivity"

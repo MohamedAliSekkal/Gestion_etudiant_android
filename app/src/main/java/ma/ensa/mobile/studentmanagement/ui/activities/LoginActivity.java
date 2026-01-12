@@ -150,8 +150,8 @@ public class LoginActivity extends AppCompatActivity {
                     break;
 
                 case "4": // Enseignant
-                    // Teachers go to AdminHomeActivity with read-only access
-                    intent = new Intent(this, AdminHomeActivity.class);
+                    // Teachers go to ProfessorHomeActivity
+                    intent = new Intent(this, ProfessorHomeActivity.class);
                     break;
 
                 case "5": // Student
