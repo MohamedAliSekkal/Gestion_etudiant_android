@@ -205,4 +205,11 @@ public class StudentRepository {
     public LiveData<List<Student>> getAllStudentsIncludingArchived() {
         return studentDao.getAllStudentsIncludingArchived();
     }
+
+    /**
+     * Get students enrolled in a specific module
+     */
+    public LiveData<List<Student>> getStudentsByModule(int moduleId) {
+        return studentDao.getStudentsByModule(moduleId);
+    }
 }

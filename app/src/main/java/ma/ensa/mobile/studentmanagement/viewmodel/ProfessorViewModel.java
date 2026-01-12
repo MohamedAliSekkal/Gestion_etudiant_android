@@ -8,24 +8,32 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import ma.ensa.mobile.studentmanagement.data.local.entity.Absence;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Grade;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Module;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Professor;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
+import ma.ensa.mobile.studentmanagement.data.repository.AbsenceRepository;
 import ma.ensa.mobile.studentmanagement.data.repository.GradeRepository;
 import ma.ensa.mobile.studentmanagement.data.repository.ModuleRepository;
 import ma.ensa.mobile.studentmanagement.data.repository.ProfessorRepository;
+import ma.ensa.mobile.studentmanagement.data.repository.StudentRepository;
 
 public class ProfessorViewModel extends AndroidViewModel {
 
     private ProfessorRepository professorRepository;
     private ModuleRepository moduleRepository;
     private GradeRepository gradeRepository;
+    private StudentRepository studentRepository;
+    private AbsenceRepository absenceRepository;
 
     public ProfessorViewModel(@NonNull Application application) {
         super(application);
         professorRepository = new ProfessorRepository(application);
         moduleRepository = new ModuleRepository(application);
         gradeRepository = new GradeRepository(application);
+        studentRepository = new StudentRepository(application);
+        absenceRepository = new AbsenceRepository(application);
     }
 
     // Professor operations
@@ -65,5 +73,19 @@ public class ProfessorViewModel extends AndroidViewModel {
 
     public LiveData<List<Grade>> getStudentGradesInModule(int studentId, int moduleId) {
         return gradeRepository.getStudentGradesInModule(studentId, moduleId);
+    }
+
+    // Student operations
+    public LiveData<List<Student>> getStudentsByModule(int moduleId) {
+        return studentRepository.getStudentsByModule(moduleId);
+    }
+
+    // Absence operations
+    public void insertAbsence(Absence absence) {
+        absenceRepository.insertAbsence(absence);
+    }
+
+    public LiveData<List<Absence>> getAbsencesByStudent(int studentId) {
+        return absenceRepository.getAbsencesByStudent(studentId);
     }
 }

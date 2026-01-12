@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Student Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewStudentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ahmed Bennani"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textViewApogee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Apogée: 12345678"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+            <!-- Average Grade Badge (if available) -->
+            <TextView
+                android:id="@+id/textViewAverageGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15.5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/success"
+                android:padding="8dp"
+                android:background="@color/surface"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonAddGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Note"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/info_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:layout_marginEnd="8dp"
+                app:cornerRadius="8dp"
+                app:icon="@android:drawable/ic_menu_edit"
+                app:iconSize="16dp"
+                app:iconGravity="start"
+                app:iconTint="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonAddAbsence"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Absence"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/warning"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="8dp"
+                app:icon="@android:drawable/ic_menu_today"
+                app:iconSize="16dp"
+                app:iconGravity="start"
+                app:iconTint="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
