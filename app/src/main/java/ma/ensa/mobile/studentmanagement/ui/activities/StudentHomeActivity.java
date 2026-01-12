@@ -4,18 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import ma.ensa.mobile.studentmanagement.R;
+import ma.ensa.mobile.studentmanagement.ui.fragments.absence.AbsenceListFragment;
+import ma.ensa.mobile.studentmanagement.ui.fragments.academic.AcademicRecordsFragment;
+import ma.ensa.mobile.studentmanagement.ui.fragments.profile.ProfileFragment;
 import ma.ensa.mobile.studentmanagement.utils.PreferencesManager;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
     private PreferencesManager preferencesManager;
+    private BottomNavigationView bottomNavigation;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +32,47 @@ public class StudentHomeActivity extends AppCompatActivity {
         preferencesManager = new PreferencesManager(this);
 
         // Setup toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            toolbar.setTitle("Espace Étudiant");
+            toolbar.setTitle("Mon Profil");
         }
 
-        // Show coming soon message
-        TextView tvMessage = findViewById(R.id.textViewComingSoon);
-        tvMessage.setText("Fonctionnalités étudiantes en développement\n\n" +
-                "Les fonctionnalités suivantes seront implémentées par la Personne B:\n\n" +
-                "• Mon Profil\n" +
-                "• Mes Absences\n" +
-                "• Mes Notes\n\n" +
-                "Connecté en tant que: " + preferencesManager.getUsername());
+        // Setup bottom navigation
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            Fragment selectedFragment = null;
+            String title = "";
+
+            if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+                title = "Mon Profil";
+            } else if (itemId == R.id.nav_absences) {
+                selectedFragment = new AbsenceListFragment();
+                title = "Mes Absences";
+            } else if (itemId == R.id.nav_grades) {
+                selectedFragment = new AcademicRecordsFragment();
+                title = "Mes Notes";
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+                if (toolbar != null) {
+                    toolbar.setTitle(title);
+                }
+                return true;
+            }
+
+            return false;
+        });
+
+        // Load ProfileFragment by default (B3: Student Profile)
+        if (savedInstanceState == null) {
+            bottomNavigation.setSelectedItemId(R.id.nav_profile);
+        }
     }
 
     @Override

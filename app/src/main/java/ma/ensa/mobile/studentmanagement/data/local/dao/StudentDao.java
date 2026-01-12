@@ -57,6 +57,15 @@ public interface StudentDao {
     LiveData<Student> getStudentByCNE(String cne);
 
     /**
+     * Get a student by username (for profile viewing - B3)
+     * Joins with users table to get student by their login username
+     */
+    @Query("SELECT s.* FROM students s " +
+           "INNER JOIN users u ON s.email = u.username " +
+           "WHERE u.username = :username")
+    LiveData<Student> getStudentByUsername(String username);
+
+    /**
      * Get all active students (not archived)
      */
     @Query("SELECT * FROM students WHERE is_archived = 0 ORDER BY last_name ASC, first_name ASC")
