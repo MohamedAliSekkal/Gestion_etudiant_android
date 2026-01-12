@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/info_light"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="Mohammed ALAMI" />
@@ -115,7 +115,7 @@
                         android:layout_height="48dp"
                         android:contentDescription="Students Icon"
                         android:src="@android:drawable/ic_menu_myplaces"
-                        app:tint="@color/primary" />
+                        app:tint="@color/info_light" />
 
                     <LinearLayout
                         android:layout_width="0dp"

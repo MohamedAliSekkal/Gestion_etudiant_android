@@ -17,7 +17,7 @@
         <!-- Modern Toolbar Card similar to register activity -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

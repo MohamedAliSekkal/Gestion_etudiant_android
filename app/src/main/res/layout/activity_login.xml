@@ -79,9 +79,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/username_hint"
                 app:startIconDrawable="@drawable/ic_user"
-                app:startIconTint="@color/primary"
-                app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary">
+                app:startIconTint="@color/info_light"
+                app:boxStrokeColor="@color/info_light"
+                app:hintTextColor="@color/info_light">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextUsername"
@@ -103,11 +103,11 @@
                 android:layout_marginTop="20dp"
                 android:hint="@string/password_hint"
                 app:endIconMode="password_toggle"
-                app:endIconTint="@color/primary"
+                app:endIconTint="@color/info_light"
                 app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/primary"
-                app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary">
+                app:startIconTint="@color/info_light"
+                app:boxStrokeColor="@color/info_light"
+                app:hintTextColor="@color/info_light">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPassword"
@@ -142,7 +142,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="@color/info_light"
                 app:cornerRadius="12dp"
                 app:elevation="4dp"
                 app:rippleColor="@color/ripple_primary" />
@@ -185,7 +185,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@string/register_link"
-            android:textColor="@color/primary"
+            android:textColor="@color/info_light"
             android:textSize="14sp"
             android:textStyle="bold"
             android:clickable="true"

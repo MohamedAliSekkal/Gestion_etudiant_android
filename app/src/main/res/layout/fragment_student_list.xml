@@ -38,12 +38,7 @@
             app:boxStrokeWidthFocused="0dp"
             app:hintTextColor="#90CAF9"
             app:startIconDrawable="@android:drawable/ic_menu_search"
-            app:startIconTint="#64B5F6"
-            app:boxStrokeColor="#64B5F6"
-            app:boxCornerRadiusTopStart="24dp"
-            app:boxCornerRadiusTopEnd="24dp"
-            app:boxCornerRadiusBottomStart="24dp"
-            app:boxCornerRadiusBottomEnd="24dp">
+            app:startIconTint="@color/info_light">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextSearch"
@@ -65,11 +60,20 @@
         android:id="@+id/buttonFilter"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="20dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#E3F2FD"
-        app:strokeWidth="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:icon="@android:drawable/ic_menu_sort_by_size"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/info_light"
+        app:strokeColor="@color/info_light"
+        app:strokeWidth="2dp"
+        app:cornerRadius="28dp"
+        app:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="@id/cardViewSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardViewSearch"
@@ -102,6 +106,46 @@
         tools:listitem="@layout/item_student" />
 
     <!-- Empty View -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:alpha="0.4"
+            android:contentDescription="Aucun étudiant"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="@color/info_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Aucun étudiant trouvé"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Ajoutez votre premier étudiant"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
     <!-- Loading View -->
 
@@ -123,11 +167,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="Ajouter un étudiant"
-        android:text="Ajouter"
-        android:textColor="@color/white"
-        app:icon="@android:drawable/ic_input_add"
-        app:iconTint="@color/white"
-        app:backgroundTint="#64B5F6"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/info_light"
+        app:tint="@color/white"
         app:elevation="8dp"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
