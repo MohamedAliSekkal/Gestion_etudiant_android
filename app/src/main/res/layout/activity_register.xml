@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_primary"
+    android:background="@drawable/gradient_login_pastel_blue"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +18,9 @@
         <!-- Logo ou Icône ENSA -->
         <ImageView
             android:id="@+id/imageViewLogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="60dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_launcher_foreground"
             android:elevation="8dp"
@@ -33,16 +33,12 @@
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:text="@string/register_title"
-            android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:elevation="4dp"
-            android:shadowColor="@color/shadow_dark"
-            android:shadowDx="0"
-            android:shadowDy="2"
-            android:shadowRadius="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageViewLogo" />
@@ -52,10 +48,10 @@
             android:id="@+id/textViewSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="@string/register_subtitle"
-            android:textColor="@color/text_white_secondary"
-            android:textSize="14sp"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
             android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
@@ -251,10 +247,10 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/accent"
+                    android:backgroundTint="@color/primary"
                     app:cornerRadius="12dp"
                     app:elevation="4dp"
-                    app:rippleColor="@color/ripple_light" />
+                    app:rippleColor="@color/ripple_primary" />
 
                 <!-- ProgressBar -->
                 <ProgressBar
@@ -289,7 +285,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_have_account"
-                android:textColor="@color/text_white_secondary"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
 
             <TextView
@@ -298,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/login_link"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:clickable="true"
