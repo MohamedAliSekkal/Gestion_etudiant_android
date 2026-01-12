@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/background"
+    android:background="@android:color/transparent"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/primary">
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/surface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:text="Bienvenue"
                     android:textSize="16sp"
-                    android:textColor="@color/text_white_secondary"
+                    android:textColor="#1976D2"
                     android:alpha="0.9" />
 
                 <TextView
@@ -44,7 +44,7 @@
                     android:text="Tableau de Bord"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="#1565C0"
                     android:layout_marginTop="4dp" />
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:text="Gestion des Étudiants - ENSA Tétouan"
                     android:textSize="14sp"
-                    android:textColor="@color/text_white_secondary"
+                    android:textColor="#1976D2"
                     android:layout_marginTop="8dp"
                     android:alpha="0.9" />
 
@@ -178,7 +178,7 @@
                 android:layout_marginEnd="8dp"
                 app:cardElevation="6dp"
                 app:cardCornerRadius="16dp"
-                app:cardBackgroundColor="@color/warning_background">
+                app:cardBackground="@drawable/gradient_sky_blue_light">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_dashboard"
-                        app:tint="@color/warning"
+                        app:tint="#42A5F5"
                         android:layout_marginBottom="12dp" />
 
                     <TextView
@@ -202,14 +202,14 @@
                         android:text="0"
                         android:textSize="36sp"
                         android:textStyle="bold"
-                        android:textColor="@color/warning" />
+                        android:textColor="#2196F3" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Filières"
                         android:textSize="13sp"
-                        android:textColor="@color/warning_dark"
+                        android:textColor="#1976D2"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:layout_marginTop="4dp" />
@@ -292,7 +292,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_dashboard"
-                        app:tint="@color/primary"
+                        app:tint="#42A5F5"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -302,7 +302,7 @@
                         android:text="Filières Disponibles"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@color/primary" />
+                        android:textColor="#2196F3" />
 
                 </LinearLayout>
 
@@ -351,7 +351,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_grades"
-                        app:tint="@color/primary"
+                        app:tint="#42A5F5"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -361,7 +361,7 @@
                         android:text="Niveaux d'Études"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="@color/primary" />
+                        android:textColor="#2196F3" />
 
                 </LinearLayout>
 
@@ -394,7 +394,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:backgroundTint="@color/accent"
+            android:background="@drawable/gradient_sky_blue_button"
             app:cornerRadius="16dp"
             app:elevation="6dp"
             app:icon="@drawable/ic_people"
