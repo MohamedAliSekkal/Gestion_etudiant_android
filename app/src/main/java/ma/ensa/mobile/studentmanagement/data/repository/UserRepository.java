@@ -8,9 +8,11 @@ import androidx.lifecycle.LiveData;
 import org.mindrot.jbcrypt.BCrypt;
 
 import ma.ensa.mobile.studentmanagement.data.local.dao.RoleDao;
+import ma.ensa.mobile.studentmanagement.data.local.dao.StudentDao;
 import ma.ensa.mobile.studentmanagement.data.local.dao.UserDao;
 import ma.ensa.mobile.studentmanagement.data.local.database.AppDatabase;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Role;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
 import ma.ensa.mobile.studentmanagement.data.local.entity.User;
 
 public class UserRepository {
@@ -20,11 +22,13 @@ public class UserRepository {
 
     private UserDao userDao;
     private RoleDao roleDao;
+    private StudentDao studentDao;
 
     public UserRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
         userDao = database.userDao();
         roleDao = database.roleDao();
+        studentDao = database.studentDao();
     }
 
     /**
@@ -153,12 +157,54 @@ public class UserRepository {
             // Insérer l'utilisateur
             long userId = userDao.insertUser(user);
             Log.i(TAG, "User registered successfully: " + user.getUsername() + " (ID: " + userId + ")");
+
+            // Si c'est un étudiant, créer aussi le profil Student
+            if (user.getRoleId() == 5 && userId > 0) {
+                createStudentProfile(user, currentTime);
+            }
+
             return userId;
 
         } catch (Exception e) {
             Log.e(TAG, "Error during user registration", e);
             return -3;
         }
+    }
+
+    /**
+     * Crée un profil étudiant lors de l'inscription
+     */
+    private void createStudentProfile(User user, long timestamp) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            try {
+                Student student = new Student();
+
+                // Auto-générer Apogée et CNE basés sur timestamp
+                String timeId = String.valueOf(timestamp).substring(5); // Derniers chiffres du timestamp
+                student.setApogeeNumber("APG" + timeId);
+                student.setCne("R" + timeId);
+
+                // Extraire prénom et nom du fullName (format: "Prénom Nom")
+                String fullName = user.getFullName();
+                String[] nameParts = fullName.trim().split("\\s+", 2);
+                student.setFirstName(nameParts[0]);
+                student.setLastName(nameParts.length > 1 ? nameParts[1] : nameParts[0]);
+
+                student.setEmail(user.getEmail());
+                student.setPhone(user.getPhone());
+                student.setStatus("ACTIVE");
+                student.setArchived(false);
+                student.setEnrollmentDate(timestamp);
+                student.setCreatedAt(timestamp);
+                student.setUpdatedAt(timestamp);
+
+                long studentId = studentDao.insertStudent(student);
+                Log.i(TAG, "Student profile created: " + student.getApogeeNumber() + " (ID: " + studentId + ")");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Error creating student profile", e);
+            }
+        });
     }
 
     /**

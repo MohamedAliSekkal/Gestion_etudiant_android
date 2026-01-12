@@ -178,4 +178,13 @@ public interface StudentDao {
      */
     @Query("SELECT * FROM students ORDER BY is_archived ASC, last_name ASC, first_name ASC")
     LiveData<List<Student>> getAllStudentsIncludingArchived();
+
+    /**
+     * Get students enrolled in a specific module
+     */
+    @Query("SELECT s.* FROM students s " +
+           "INNER JOIN student_modules sm ON s.student_id = sm.student_id " +
+           "WHERE sm.module_id = :moduleId AND sm.is_active = 1 AND s.is_archived = 0 " +
+           "ORDER BY s.last_name ASC, s.first_name ASC")
+    LiveData<List<Student>> getStudentsByModule(int moduleId);
 }

@@ -44,6 +44,12 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <!-- Module Detail Activity -->
+        <activity
+            android:name=".ui.activities.ModuleDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- Login Activity (Point d'entrée) -->
         <activity
             android:name=".ui.activities.LoginActivity"

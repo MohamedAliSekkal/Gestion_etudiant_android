@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ma.ensa.mobile.studentmanagement.R;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Module;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Professor;
+import ma.ensa.mobile.studentmanagement.ui.adapters.ModuleAdapter;
 import ma.ensa.mobile.studentmanagement.utils.PreferencesManager;
 import ma.ensa.mobile.studentmanagement.viewmodel.ProfessorViewModel;
 
@@ -29,6 +31,7 @@ public class ProfessorHomeActivity extends AppCompatActivity {
     private TextView textViewDepartment;
     private View layoutEmpty;
     private Toolbar toolbar;
+    private ModuleAdapter moduleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,10 @@ public class ProfessorHomeActivity extends AppCompatActivity {
         // Setup RecyclerView
         recyclerViewModules.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewModules.setHasFixedSize(true);
+
+        // Setup adapter with click listener
+        moduleAdapter = new ModuleAdapter(this::onModuleClick);
+        recyclerViewModules.setAdapter(moduleAdapter);
 
         // Initialize ViewModel
         professorViewModel = new ViewModelProvider(this).get(ProfessorViewModel.class);
@@ -87,9 +94,7 @@ public class ProfessorHomeActivity extends AppCompatActivity {
         professorViewModel.getModulesByProfessor(professorId).observe(this, modules -> {
             if (modules != null && !modules.isEmpty()) {
                 showModulesList();
-                // TODO: Set adapter with modules
-                // ModuleAdapter adapter = new ModuleAdapter(modules, this::onModuleClick);
-                // recyclerViewModules.setAdapter(adapter);
+                moduleAdapter.setModules(modules);
 
                 Toast.makeText(this,
                     "Vous avez " + modules.size() + " module(s) assigné(s)",
@@ -98,6 +103,12 @@ public class ProfessorHomeActivity extends AppCompatActivity {
                 showEmptyState();
             }
         });
+    }
+
+    private void onModuleClick(Module module) {
+        Intent intent = new Intent(this, ModuleDetailActivity.class);
+        intent.putExtra(ModuleDetailActivity.EXTRA_MODULE_ID, module.getModuleId());
+        startActivity(intent);
     }
 
     private void showModulesList() {

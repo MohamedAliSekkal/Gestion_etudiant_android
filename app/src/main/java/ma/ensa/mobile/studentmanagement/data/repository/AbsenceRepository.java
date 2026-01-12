@@ -78,4 +78,13 @@ public class AbsenceRepository {
     public LiveData<Integer> getAbsenceCountBySemester(int studentId, String semester) {
         return absenceDao.getAbsenceCountBySemester(studentId, semester);
     }
+
+    /**
+     * Insert a new absence
+     */
+    public void insertAbsence(Absence absence) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            absenceDao.insertAbsence(absence);
+        });
+    }
 }
