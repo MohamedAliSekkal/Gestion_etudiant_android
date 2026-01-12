@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@android:drawable/ic_menu_revert"
         app:title="Gestion des Étudiants"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/black" />
 
     <!-- NavHostFragment -->
     <androidx.fragment.app.FragmentContainerView
