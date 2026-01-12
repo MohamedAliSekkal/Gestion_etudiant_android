@@ -12,10 +12,13 @@
         android:id="@+id/cardViewSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/surface"
+        app:strokeWidth="0dp"
         app:layout_constraintEnd_toStartOf="@+id/buttonFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,17 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Rechercher par nom ou Apogée"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             app:boxBackgroundColor="@color/surface"
             app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="2dp"
-            app:hintTextColor="#42A5F5"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="#90CAF9"
             app:startIconDrawable="@android:drawable/ic_menu_search"
-            app:startIconTint="#42A5F5"
-            app:boxStrokeColor="#42A5F5"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusBottomEnd="16dp">
+            app:startIconTint="#64B5F6"
+            app:boxStrokeColor="#64B5F6"
+            app:boxCornerRadiusTopStart="24dp"
+            app:boxCornerRadiusTopEnd="24dp"
+            app:boxCornerRadiusBottomStart="24dp"
+            app:boxCornerRadiusBottomEnd="24dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextSearch"
@@ -44,46 +51,49 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textSize="15sp"
-                android:textColor="@color/text_primary" />
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
     <!-- Filter Button -->
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/buttonFilter"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        app:icon="@android:drawable/ic_menu_sort_by_size"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconTint="#42A5F5"
-        app:strokeColor="#42A5F5"
-        app:strokeWidth="2dp"
-        app:cornerRadius="16dp"
-        app:elevation="4dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#E3F2FD"
+        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="@id/cardViewSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardViewSearch"
-        app:layout_constraintTop_toTopOf="@id/cardViewSearch" />
+        app:layout_constraintTop_toTopOf="@id/cardViewSearch">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:tint="#64B5F6" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewStudents"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:clipToPadding="false"
-        android:paddingBottom="80dp"
+        android:paddingBottom="100dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,48 +102,9 @@
         tools:listitem="@layout/item_student" />
 
     <!-- Empty View -->
-    <LinearLayout
-        android:id="@+id/layoutEmpty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:padding="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
-
-        <ImageView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:alpha="0.4"
-            android:contentDescription="Aucun étudiant"
-            android:src="@android:drawable/ic_menu_search"
-            android:tint="#42A5F5" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Aucun étudiant trouvé"
-            android:textColor="#1565C0"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Ajoutez votre premier étudiant"
-            android:textColor="@color/text_secondary"
-            android:textSize="15sp" />
-
-    </LinearLayout>
 
     <!-- Loading View -->
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="40dp"
@@ -145,17 +116,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
         android:contentDescription="Ajouter un étudiant"
-        android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#42A5F5"
-        app:tint="@color/white"
+        android:text="Ajouter"
+        android:textColor="@color/white"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/white"
+        app:backgroundTint="#64B5F6"
         app:elevation="8dp"
-        app:borderWidth="0dp"
+        app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
