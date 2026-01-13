@@ -68,7 +68,10 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ajouter" />
+            android:text="Ajouter"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/info_light"
+            app:cornerRadius="12dp" />
 
     </LinearLayout>
 
