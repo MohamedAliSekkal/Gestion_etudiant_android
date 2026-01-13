@@ -64,7 +64,10 @@
             android:id="@+id/buttonApply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Appliquer" />
+            android:text="Appliquer"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/info_light"
+            app:cornerRadius="12dp" />
 
     </LinearLayout>
 
