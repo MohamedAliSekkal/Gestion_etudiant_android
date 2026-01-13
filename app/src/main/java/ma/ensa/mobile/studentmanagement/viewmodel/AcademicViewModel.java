@@ -9,7 +9,9 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import ma.ensa.mobile.studentmanagement.data.local.entity.Grade;
+import ma.ensa.mobile.studentmanagement.data.local.entity.Module;
 import ma.ensa.mobile.studentmanagement.data.repository.GradeRepository;
+import ma.ensa.mobile.studentmanagement.data.repository.ModuleRepository;
 
 /**
  * B2: Academic ViewModel
@@ -18,10 +20,12 @@ import ma.ensa.mobile.studentmanagement.data.repository.GradeRepository;
 public class AcademicViewModel extends AndroidViewModel {
 
     private GradeRepository gradeRepository;
+    private ModuleRepository moduleRepository;
 
     public AcademicViewModel(@NonNull Application application) {
         super(application);
         gradeRepository = new GradeRepository(application);
+        moduleRepository = new ModuleRepository(application);
     }
 
     /**
@@ -92,5 +96,19 @@ public class AcademicViewModel extends AndroidViewModel {
      */
     public LiveData<List<Grade>> getFailedGrades(int studentId) {
         return gradeRepository.getFailedGrades(studentId);
+    }
+
+    /**
+     * Get all active modules
+     */
+    public LiveData<List<Module>> getAllActiveModules() {
+        return moduleRepository.getAllActiveModules();
+    }
+
+    /**
+     * Assign professor to module
+     */
+    public void assignProfessorToModule(int moduleId, int professorId) {
+        moduleRepository.assignProfessor(moduleId, professorId);
     }
 }

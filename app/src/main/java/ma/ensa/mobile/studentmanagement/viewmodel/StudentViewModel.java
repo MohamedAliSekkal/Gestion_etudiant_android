@@ -13,13 +13,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
+import ma.ensa.mobile.studentmanagement.data.local.entity.StudentModule;
+import ma.ensa.mobile.studentmanagement.data.local.entity.User;
 import ma.ensa.mobile.studentmanagement.data.repository.StudentRepository;
+import ma.ensa.mobile.studentmanagement.data.repository.StudentModuleRepository;
+import ma.ensa.mobile.studentmanagement.data.repository.UserRepository;
 
 public class StudentViewModel extends AndroidViewModel {
 
     private static final String TAG = "StudentViewModel";
 
     private StudentRepository repository;
+    private StudentModuleRepository studentModuleRepository;
+    private UserRepository userRepository;
     private LiveData<List<Student>> allActiveStudents;
     private MutableLiveData<Student> selectedStudent;
     private MutableLiveData<Long> operationResult;
@@ -32,6 +38,8 @@ public class StudentViewModel extends AndroidViewModel {
     public StudentViewModel(@NonNull Application application) {
         super(application);
         repository = new StudentRepository(application);
+        studentModuleRepository = new StudentModuleRepository(application);
+        userRepository = new UserRepository(application);
         allActiveStudents = repository.getAllActiveStudents();
         selectedStudent = new MutableLiveData<>();
         operationResult = new MutableLiveData<>();
@@ -75,6 +83,63 @@ public class StudentViewModel extends AndroidViewModel {
 
             } catch (Exception e) {
                 Log.e(TAG, "Error creating student", e);
+                operationError.postValue("Erreur lors de la création");
+                operationResult.postValue(-4L);
+            } finally {
+                isLoading.postValue(false);
+            }
+        });
+    }
+
+    /**
+     * Create a new student with module enrollments
+     */
+    public void createStudentWithModules(Student student, List<Integer> moduleIds) {
+        isLoading.setValue(true);
+
+        executorService.execute(() -> {
+            try {
+                // Validate student
+                if (!validateStudent(student)) {
+                    operationError.postValue("Veuillez remplir tous les champs obligatoires");
+                    operationResult.postValue(-4L);
+                    isLoading.postValue(false);
+                    return;
+                }
+
+                long result = repository.insert(student);
+
+                if (result == -1) {
+                    operationError.postValue("Ce numéro Apogée existe déjà");
+                } else if (result == -2) {
+                    operationError.postValue("Ce CNE existe déjà");
+                } else if (result == -3) {
+                    operationError.postValue("Cet email est déjà utilisé");
+                } else if (result == -4) {
+                    operationError.postValue("Erreur lors de la création");
+                } else if (result > 0) {
+                    // Student created successfully, now enroll in modules
+                    int studentId = (int) result;
+
+                    if (moduleIds != null && !moduleIds.isEmpty()) {
+                        for (Integer moduleId : moduleIds) {
+                            StudentModule studentModule = new StudentModule(studentId, moduleId);
+                            studentModuleRepository.insert(studentModule);
+                        }
+                        Log.i(TAG, "Student enrolled in " + moduleIds.size() + " modules");
+                    }
+
+                    // Create User account for the student (email as username, apogee as password)
+                    createUserAccountForStudent(student);
+
+                    operationError.postValue(null);
+                    Log.i(TAG, "Student created successfully with ID: " + result);
+                }
+
+                operationResult.postValue(result);
+
+            } catch (Exception e) {
+                Log.e(TAG, "Error creating student with modules", e);
                 operationError.postValue("Erreur lors de la création");
                 operationResult.postValue(-4L);
             } finally {
@@ -199,6 +264,35 @@ public class StudentViewModel extends AndroidViewModel {
                 && student.getEmail() != null && !student.getEmail().isEmpty();
     }
 
+    /**
+     * Create a User account for the student
+     * Username: email, Password: apogee number, Role: Student (5)
+     */
+    private void createUserAccountForStudent(Student student) {
+        try {
+            User user = new User();
+            user.setUsername(student.getEmail()); // Use email as username
+            user.setEmail(student.getEmail());
+            user.setPasswordHash(student.getApogeeNumber()); // Use apogee as password (will be hashed in repository)
+            user.setFullName(student.getFullName());
+            user.setPhone(student.getPhone());
+            user.setRoleId(5); // Student role
+            user.setActive(true);
+
+            long userId = userRepository.registerUser(user);
+            if (userId > 0) {
+                Log.i(TAG, "User account created for student: " + student.getEmail() + " (User ID: " + userId + ")");
+            } else if (userId == -1 || userId == -2) {
+                // Username or email already exists - this is OK since the student might already have an account
+                Log.i(TAG, "User account already exists for student: " + student.getEmail());
+            } else {
+                Log.w(TAG, "Failed to create user account for student: " + student.getEmail());
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating user account for student", e);
+        }
+    }
+
     // Getters for LiveData observables
     public LiveData<Student> getSelectedStudent() {
         return selectedStudent;
@@ -214,6 +308,26 @@ public class StudentViewModel extends AndroidViewModel {
 
     public LiveData<Boolean> getIsLoading() {
         return isLoading;
+    }
+
+    /**
+     * Enroll student in module
+     */
+    public void enrollStudentInModule(int studentId, int moduleId) {
+        executorService.execute(() -> {
+            try {
+                StudentModule enrollment = new StudentModule();
+                enrollment.setStudentId(studentId);
+                enrollment.setModuleId(moduleId);
+                enrollment.setEnrollmentDate(System.currentTimeMillis() / 1000);
+                enrollment.setActive(true);
+
+                studentModuleRepository.insert(enrollment);
+                Log.i(TAG, "Student " + studentId + " enrolled in module " + moduleId);
+            } catch (Exception e) {
+                Log.e(TAG, "Error enrolling student in module", e);
+            }
+        });
     }
 
     @Override

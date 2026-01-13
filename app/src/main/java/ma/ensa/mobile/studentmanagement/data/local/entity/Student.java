@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(
     tableName = "students",
     indices = {
@@ -14,7 +16,7 @@ import androidx.room.PrimaryKey;
         @Index(value = "email", unique = true)
     }
 )
-public class Student {
+public class Student implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "student_id")

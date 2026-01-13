@@ -292,6 +292,46 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Modules Section -->
+                <TextView
+                    android:id="@+id/textViewModulesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Modules inscrits"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewModulesHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Sélectionnez les modules auxquels l'étudiant est inscrit"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+
+                <!-- RecyclerView for Module Selection -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewModules"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:minHeight="100dp" />
+
+                <TextView
+                    android:id="@+id/textViewNoModules"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="Aucun module disponible"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
                 <!-- Message d'erreur -->
                 <TextView
                     android:id="@+id/textViewError"
