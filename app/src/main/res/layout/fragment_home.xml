@@ -405,6 +405,59 @@
             app:iconTint="@color/white"
             app:rippleColor="@color/ripple_light" />
 
+        <!-- Quick Actions Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/surface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Actions Rapides"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Assign Professor Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAssignProfessor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Assigner Professeur au Module"
+                    android:textSize="14sp"
+                    android:backgroundTint="@color/info_light"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_add"
+                    app:iconGravity="start"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Add Student to Module Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddStudentToModule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ajouter Étudiant au Module"
+                    android:textSize="14sp"
+                    android:backgroundTint="@color/primary"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_add"
+                    app:iconGravity="start" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
 </ScrollView>

@@ -15,13 +15,13 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- Status Indicator -->
+        <!-- Grade Indicator -->
         <View
-            android:id="@+id/statusIndicator"
+            android:id="@+id/gradeIndicator"
             android:layout_width="4dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="12dp"
-            android:background="@color/error" />
+            android:background="@color/success" />
 
         <!-- Content -->
         <LinearLayout
@@ -30,51 +30,57 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textViewExamType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Contrôle Continu" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewAbsenceDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:text="15/01/2025" />
-
-                <TextView
-                    android:id="@+id/textViewAbsenceHours"
+                    android:id="@+id/textViewCoefficient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_secondary"
-                    android:textSize="14sp"
-                    android:text="2h" />
+                    android:textSize="12sp"
+                    android:text="Coef: 1.5" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textViewDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:text="15/01/2025" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewAbsenceType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp"
-                android:text="Non justifiée" />
-
-            <TextView
-                android:id="@+id/textViewJustification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:visibility="gone"
-                android:text="Raison: Visite médicale" />
-
         </LinearLayout>
+
+        <!-- Grade Value -->
+        <TextView
+            android:id="@+id/textViewGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="15.5/20" />
 
     </LinearLayout>
 

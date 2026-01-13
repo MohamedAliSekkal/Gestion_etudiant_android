@@ -83,7 +83,7 @@ public class AuthViewModel extends AndroidViewModel {
                 user.setPasswordHash(password); // Sera hashé dans le Repository
                 user.setFullName(fullName);
                 user.setPhone(phone);
-                user.setRoleId(5); // Role Étudiant par défaut
+                user.setRoleId(4); // Role Professeur (signup is for professors only, students are created by admin)
 
                 // Enregistrer l'utilisateur
                 long result = userRepository.registerUser(user);

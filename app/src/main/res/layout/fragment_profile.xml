@@ -294,39 +294,19 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Coming Soon Card -->
-        <com.google.android.material.card.MaterialCardView
+        <!-- Edit Profile Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="12dp"
-            app:cardBackgroundColor="#FFF3E0">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fonctionnalités à venir"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#E65100"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="• Modification du profil\n• Changement de mot de passe\n• Upload photo de profil"
-                    android:textSize="14sp"
-                    android:textColor="#BF360C" />
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            android:text="Modifier mon profil"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/info_light"
+            app:icon="@android:drawable/ic_menu_edit"
+            app:iconGravity="start"
+            app:cornerRadius="12dp"
+            android:paddingVertical="14dp" />
 
     </LinearLayout>
 

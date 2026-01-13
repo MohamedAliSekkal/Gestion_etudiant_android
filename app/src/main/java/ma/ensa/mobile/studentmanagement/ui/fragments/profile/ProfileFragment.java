@@ -13,12 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import ma.ensa.mobile.studentmanagement.R;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
+import ma.ensa.mobile.studentmanagement.ui.dialogs.EditProfileDialogFragment;
 import ma.ensa.mobile.studentmanagement.utils.PreferencesManager;
 import ma.ensa.mobile.studentmanagement.viewmodel.ProfileViewModel;
 
@@ -30,6 +33,7 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel viewModel;
     private PreferencesManager preferencesManager;
+    private Student currentStudent;
 
     // Views
     private TextView textViewFullName;
@@ -43,6 +47,7 @@ public class ProfileFragment extends Fragment {
     private TextView textViewStatus;
     private TextView textViewEnrollmentDate;
     private ImageView imageViewProfile;
+    private MaterialButton buttonEditProfile;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -78,6 +83,10 @@ public class ProfileFragment extends Fragment {
         textViewStatus = view.findViewById(R.id.textViewStatus);
         textViewEnrollmentDate = view.findViewById(R.id.textViewEnrollmentDate);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
+        buttonEditProfile = view.findViewById(R.id.buttonEditProfile);
+
+        // Set edit button click listener
+        buttonEditProfile.setOnClickListener(v -> openEditProfileDialog());
     }
 
     private void loadProfile() {
@@ -92,11 +101,21 @@ public class ProfileFragment extends Fragment {
         // Load student data by username
         viewModel.getStudentByUsername(username).observe(getViewLifecycleOwner(), student -> {
             if (student != null) {
+                currentStudent = student;
                 displayStudentInfo(student);
             } else {
                 showNoProfileMessage();
             }
         });
+    }
+
+    private void openEditProfileDialog() {
+        if (currentStudent != null) {
+            EditProfileDialogFragment dialog = EditProfileDialogFragment.newInstance(currentStudent);
+            dialog.show(getParentFragmentManager(), "EditProfileDialog");
+        } else {
+            Toast.makeText(requireContext(), "Impossible de modifier le profil pour le moment", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void displayStudentInfo(Student student) {

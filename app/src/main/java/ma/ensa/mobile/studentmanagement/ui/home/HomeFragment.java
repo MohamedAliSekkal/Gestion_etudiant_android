@@ -70,6 +70,30 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             });
         }
+
+        // Setup Assign Professor button
+        Button btnAssignProfessor = view.findViewById(R.id.buttonAssignProfessor);
+        if (btnAssignProfessor != null) {
+            btnAssignProfessor.setOnClickListener(v -> openAssignProfessorDialog());
+        }
+
+        // Setup Add Student to Module button
+        Button btnAddStudentToModule = view.findViewById(R.id.buttonAddStudentToModule);
+        if (btnAddStudentToModule != null) {
+            btnAddStudentToModule.setOnClickListener(v -> openAddStudentToModuleDialog());
+        }
+    }
+
+    private void openAssignProfessorDialog() {
+        ma.ensa.mobile.studentmanagement.ui.dialogs.AssignProfessorDialogFragment dialog =
+            ma.ensa.mobile.studentmanagement.ui.dialogs.AssignProfessorDialogFragment.newInstance();
+        dialog.show(getParentFragmentManager(), "AssignProfessorDialog");
+    }
+
+    private void openAddStudentToModuleDialog() {
+        ma.ensa.mobile.studentmanagement.ui.dialogs.AddStudentToModuleDialogFragment dialog =
+            ma.ensa.mobile.studentmanagement.ui.dialogs.AddStudentToModuleDialogFragment.newInstance();
+        dialog.show(getParentFragmentManager(), "AddStudentToModuleDialog");
     }
 
     private void observeStatistics() {

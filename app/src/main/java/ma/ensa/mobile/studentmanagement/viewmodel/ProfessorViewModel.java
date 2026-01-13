@@ -45,6 +45,10 @@ public class ProfessorViewModel extends AndroidViewModel {
         return professorRepository.getProfessorByUserIdSync(userId);
     }
 
+    public LiveData<List<Professor>> getAllActiveProfessors() {
+        return professorRepository.getAllActiveProfessors();
+    }
+
     // Module operations
     public LiveData<List<Module>> getModulesByProfessor(int professorId) {
         return moduleRepository.getModulesByProfessor(professorId);

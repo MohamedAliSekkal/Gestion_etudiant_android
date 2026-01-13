@@ -104,4 +104,11 @@ public class AcademicViewModel extends AndroidViewModel {
     public LiveData<List<Module>> getAllActiveModules() {
         return moduleRepository.getAllActiveModules();
     }
+
+    /**
+     * Assign professor to module
+     */
+    public void assignProfessorToModule(int moduleId, int professorId) {
+        moduleRepository.assignProfessor(moduleId, professorId);
+    }
 }
