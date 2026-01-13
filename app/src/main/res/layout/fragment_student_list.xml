@@ -106,6 +106,7 @@
         tools:listitem="@layout/item_student" />
 
     <!-- Empty View -->
+<<<<<<< Updated upstream
     <LinearLayout
         android:id="@+id/layoutEmpty"
         android:layout_width="wrap_content"
@@ -136,6 +137,8 @@
             android:gravity="center" />
 
     </LinearLayout>
+=======
+>>>>>>> Stashed changes
 
     <!-- Loading View -->
 
