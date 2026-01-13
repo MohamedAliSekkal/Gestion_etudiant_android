@@ -89,24 +89,27 @@
     </com.google.android.material.card.MaterialCardView>
 
     <!-- RecyclerView -->
+
+    <!-- Empty View -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewStudents"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:paddingBottom="100dp"
-        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardViewSearch"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_student" />
 
-    <!-- Empty View -->
-<<<<<<< Updated upstream
+    <<<<<<< Updated upstream
     <LinearLayout
         android:id="@+id/layoutEmpty"
         android:layout_width="wrap_content"
