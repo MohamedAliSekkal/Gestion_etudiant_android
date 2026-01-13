@@ -13,13 +13,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
+import ma.ensa.mobile.studentmanagement.data.local.entity.StudentModule;
 import ma.ensa.mobile.studentmanagement.data.repository.StudentRepository;
+import ma.ensa.mobile.studentmanagement.data.repository.StudentModuleRepository;
 
 public class StudentViewModel extends AndroidViewModel {
 
     private static final String TAG = "StudentViewModel";
 
     private StudentRepository repository;
+    private StudentModuleRepository studentModuleRepository;
     private LiveData<List<Student>> allActiveStudents;
     private MutableLiveData<Student> selectedStudent;
     private MutableLiveData<Long> operationResult;
@@ -32,6 +35,7 @@ public class StudentViewModel extends AndroidViewModel {
     public StudentViewModel(@NonNull Application application) {
         super(application);
         repository = new StudentRepository(application);
+        studentModuleRepository = new StudentModuleRepository(application);
         allActiveStudents = repository.getAllActiveStudents();
         selectedStudent = new MutableLiveData<>();
         operationResult = new MutableLiveData<>();
@@ -75,6 +79,60 @@ public class StudentViewModel extends AndroidViewModel {
 
             } catch (Exception e) {
                 Log.e(TAG, "Error creating student", e);
+                operationError.postValue("Erreur lors de la création");
+                operationResult.postValue(-4L);
+            } finally {
+                isLoading.postValue(false);
+            }
+        });
+    }
+
+    /**
+     * Create a new student with module enrollments
+     */
+    public void createStudentWithModules(Student student, List<Integer> moduleIds) {
+        isLoading.setValue(true);
+
+        executorService.execute(() -> {
+            try {
+                // Validate student
+                if (!validateStudent(student)) {
+                    operationError.postValue("Veuillez remplir tous les champs obligatoires");
+                    operationResult.postValue(-4L);
+                    isLoading.postValue(false);
+                    return;
+                }
+
+                long result = repository.insert(student);
+
+                if (result == -1) {
+                    operationError.postValue("Ce numéro Apogée existe déjà");
+                } else if (result == -2) {
+                    operationError.postValue("Ce CNE existe déjà");
+                } else if (result == -3) {
+                    operationError.postValue("Cet email est déjà utilisé");
+                } else if (result == -4) {
+                    operationError.postValue("Erreur lors de la création");
+                } else if (result > 0) {
+                    // Student created successfully, now enroll in modules
+                    int studentId = (int) result;
+
+                    if (moduleIds != null && !moduleIds.isEmpty()) {
+                        for (Integer moduleId : moduleIds) {
+                            StudentModule studentModule = new StudentModule(studentId, moduleId);
+                            studentModuleRepository.insert(studentModule);
+                        }
+                        Log.i(TAG, "Student enrolled in " + moduleIds.size() + " modules");
+                    }
+
+                    operationError.postValue(null);
+                    Log.i(TAG, "Student created successfully with ID: " + result);
+                }
+
+                operationResult.postValue(result);
+
+            } catch (Exception e) {
+                Log.e(TAG, "Error creating student with modules", e);
                 operationError.postValue("Erreur lors de la création");
                 operationResult.postValue(-4L);
             } finally {

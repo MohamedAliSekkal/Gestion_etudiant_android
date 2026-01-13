@@ -14,16 +14,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.List;
 
 import ma.ensa.mobile.studentmanagement.R;
 import ma.ensa.mobile.studentmanagement.data.local.entity.Student;
 import ma.ensa.mobile.studentmanagement.databinding.FragmentStudentCreateBinding;
+import ma.ensa.mobile.studentmanagement.ui.adapters.ModuleSelectionAdapter;
+import ma.ensa.mobile.studentmanagement.viewmodel.AcademicViewModel;
 import ma.ensa.mobile.studentmanagement.viewmodel.StudentViewModel;
 
 public class StudentCreateFragment extends Fragment {
 
     private FragmentStudentCreateBinding binding;
     private StudentViewModel viewModel;
+    private AcademicViewModel academicViewModel;
+    private ModuleSelectionAdapter moduleAdapter;
     private boolean isEditMode = false;
     private int studentId = -1;
     private Student currentStudent;
@@ -39,8 +46,9 @@ public class StudentCreateFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize ViewModel
+        // Initialize ViewModels
         viewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+        academicViewModel = new ViewModelProvider(this).get(AcademicViewModel.class);
 
         // Check if edit mode
         if (getArguments() != null) {
@@ -50,6 +58,9 @@ public class StudentCreateFragment extends Fragment {
 
         // Setup gender dropdown
         setupGenderDropdown();
+
+        // Setup modules RecyclerView
+        setupModulesRecyclerView();
 
         // Setup observers
         setupObservers();
@@ -72,6 +83,24 @@ public class StudentCreateFragment extends Fragment {
                 genders
         );
         binding.autoCompleteGender.setAdapter(adapter);
+    }
+
+    private void setupModulesRecyclerView() {
+        moduleAdapter = new ModuleSelectionAdapter();
+        binding.recyclerViewModules.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerViewModules.setAdapter(moduleAdapter);
+
+        // Load all active modules
+        academicViewModel.getAllActiveModules().observe(getViewLifecycleOwner(), modules -> {
+            if (modules != null && !modules.isEmpty()) {
+                moduleAdapter.setModules(modules);
+                binding.recyclerViewModules.setVisibility(View.VISIBLE);
+                binding.textViewNoModules.setVisibility(View.GONE);
+            } else {
+                binding.recyclerViewModules.setVisibility(View.GONE);
+                binding.textViewNoModules.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void setupObservers() {
@@ -221,7 +250,11 @@ public class StudentCreateFragment extends Fragment {
             student.setStatus("ACTIVE");
             student.setEnrollmentDate(System.currentTimeMillis() / 1000);
 
-            viewModel.createStudent(student);
+            // Get selected modules
+            List<Integer> selectedModuleIds = moduleAdapter.getSelectedModuleIds();
+
+            // Create student with modules
+            viewModel.createStudentWithModules(student, selectedModuleIds);
         }
     }
 
