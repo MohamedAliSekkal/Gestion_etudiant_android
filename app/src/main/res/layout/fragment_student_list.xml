@@ -109,7 +109,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_student" />
 
-    <<<<<<< Updated upstream
     <LinearLayout
         android:id="@+id/layoutEmpty"
         android:layout_width="wrap_content"
@@ -140,8 +139,6 @@
             android:gravity="center" />
 
     </LinearLayout>
-=======
->>>>>>> Stashed changes
 
     <!-- Loading View -->
 
